@@ -14,6 +14,8 @@ namespace Chasing.Midi.Timeline
     {
         public MidiAnimation template = new MidiAnimation();
 
+        public override double duration => template.DurationInSecond;
+
         public ClipCaps clipCaps
         {
             get

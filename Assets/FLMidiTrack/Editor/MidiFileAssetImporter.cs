@@ -30,8 +30,9 @@ namespace Chasing.Midi.Timeline
             for (int i = 0; i < midiAsset.tracks.Length; i++)
             {
                 MidiAnimationAsset track = midiAsset.tracks[i];
-                track.name = name + "Track" + i;
+                track.name = fileName + "_Track" + i;
                 track.template.tempo = mTempo;
+                ctx.AddObjectToAsset(track.name, track);
             }
         }
     }
