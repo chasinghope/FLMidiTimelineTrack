@@ -29,19 +29,20 @@ namespace Chasing.Midi.Timeline
         /// </summary>
         /// <param name="director"></param>
         /// <param name="driver"></param>
-        public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)
-        {
-            if (template.controls == null)
-                return;
+        //public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)
+        //{
+        //    if (template.controls == null)
+        //        return;
 
-            foreach (MidiControl control in template.controls)
-            {
-                if (!control.enabled)
-                    continue;
+        //    foreach (MidiControl control in template.controls)
+        //    {
+        //        if (!control.enabled)
+        //            continue;
 
+        //        control.target
                 
-            }
-        }
+        //    }
+        //}
 
     }
 }

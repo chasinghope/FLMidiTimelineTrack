@@ -98,6 +98,7 @@ namespace Chasing.Midi.Timeline
     /// <summary>
     /// Midi控制器
     /// </summary>
+    [System.Serializable]
     public sealed class MidiControl
     {
         /// <summary>
@@ -135,5 +136,8 @@ namespace Chasing.Midi.Timeline
         );
 
         public int ccNumber = 1;
+
+        public ExposedReference<MidiActionReceiver> targetComponent;
+        public MidiAction action;
     }
 }
