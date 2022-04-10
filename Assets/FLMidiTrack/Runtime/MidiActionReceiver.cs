@@ -5,7 +5,7 @@ namespace Chasing.Midi.Timeline
     [DisallowMultipleComponent]
     public class MidiActionReceiver : MonoBehaviour
     {
-        public MidiAction action;
+        public MidiAction action = new MidiAction();
 
         private void OnEnable()
         {
@@ -17,9 +17,9 @@ namespace Chasing.Midi.Timeline
             action?.RemoveListener(MidiActionTrigger);
         }
 
-        protected virtual void MidiActionTrigger(float value)
+        protected virtual void MidiActionTrigger(MidiNoteFilter noteFilter, float value)
         {
-            Debug.Log($"MidiActionTrigger {value}");
+            Debug.Log($"MidiActionTrigger {noteFilter} {value}");
         }
     }
 }

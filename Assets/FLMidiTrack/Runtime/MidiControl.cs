@@ -32,14 +32,14 @@ namespace Chasing.Midi.Timeline
     /// </summary>
     public enum MidiOctave
     {
-        All,
+        All = -2,
         Minus2,
         Minus1,
-        Zero,
+        Zero = 1,
         Plus1,
         Plus2,
         Plus3,
-        Plus4,
+        Plus4 = 5,
         Plus5,
         Plus6,
         Plus7,
@@ -58,6 +58,22 @@ namespace Chasing.Midi.Timeline
         public bool Check(in MidiEvent e)
         {
             return e.IsNote && (octave == MidiOctave.All || e.data1 / 12 == (int)octave - 1) && (note == MidiNote.All || e.data1 % 12 == (int)note - 1);
+        }
+
+        public override string ToString()
+        {
+            return $"{octave.ToString()} - {note.ToString()}";
+        }
+
+        public bool IsAllNote()
+        {
+            return note == MidiNote.All && octave == MidiOctave.All;
+        }
+
+
+        public bool IsGroupNote()
+        {
+            return note == MidiNote.All && octave != MidiOctave.All;
         }
     }
 
@@ -139,5 +155,20 @@ namespace Chasing.Midi.Timeline
 
         public ExposedReference<MidiActionReceiver> targetComponent;
         public MidiAction action;
+
+        public MidiControl Copy()
+        {
+            MidiControl midiControl = new MidiControl();
+            midiControl.enabled = this.enabled;
+            midiControl.mode = this.mode;
+            midiControl.noteFilter = this.noteFilter;
+            midiControl.envelope = this.envelope;
+            midiControl.curve = this.curve;
+            midiControl.ccNumber = this.ccNumber;
+            midiControl.targetComponent = this.targetComponent;
+            midiControl.action = this.action;
+            return midiControl;
+        }
+
     }
 }
