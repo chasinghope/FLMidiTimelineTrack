@@ -1,9 +1,12 @@
 using Chasing.Midi.Timeline;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.UIElements;
 
 namespace Chasing.TrackWindow
 {
@@ -11,8 +14,12 @@ namespace Chasing.TrackWindow
     {
         public const float offsetxPerSecond = 10f;
 
-        [SerializeField] MidiFileAsset midiAsset;
+        public static TrackWindowsController Instance;
 
+
+
+        [SerializeField] MidiFileAsset midiAsset;
+        [SerializeField] TextMeshProUGUI popTip;
         [SerializeField] ScrollRect scrollRect;
 
         [Header("TimePoint")]
@@ -29,30 +36,87 @@ namespace Chasing.TrackWindow
 
 
         [Header("Config")]
+        [SerializeField] MidiNoteFilterScriptable noteFilterConfig;
         public int trackTotalMinutes = 5;
         public int perSecondBeats = 2;
 
+        public SelectSlot selectSlot;
+
+        public Dictionary<MidiOctave, OctaveSetting> octaveDict = new Dictionary<MidiOctave, OctaveSetting>();
+        public Dictionary<MidiNote, NoteSetting> noteDict = new Dictionary<MidiNote, NoteSetting>();
+
         float perSecxPos;
-         
+
+        bool popTipBusy;
+
         //List<TimePointView> timePointViews = new List<TimePointView>();
         private void Awake()
         {
+            if(Instance == null)
+                Instance = this;
+
             timePointViewPrefab.gameObject.SetActive(false);
             trackHeaderPrefab.gameObject.SetActive(false);
             trackPrefab.gameObject.SetActive(false);
             slotPrefab.gameObject.SetActive(false);
+
+            popTip.gameObject.SetActive(false);
         }
 
         public void Start()
         {
+            InitConfig();
             Init();
         }
 
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                //Save
+#if UNITY_EDITOR
+                if(popTipBusy == false)
+                {
+                    EditorUtility.SetDirty(midiAsset);
+                    StartCoroutine(PopupTip($"保存成功... {midiAsset.name}"));
+                }
+
+#endif
+            }
+        }
+
+        private void InitConfig()
+        {
+            foreach (OctaveSetting item in noteFilterConfig.octaveSettings)
+            {
+                if (!this.octaveDict.ContainsKey(item.octave))
+                {
+                    octaveDict.Add(item.octave, item);
+                }
+                else
+                {
+                    Debug.LogError("OctaveSetting 配置重复");
+                }
+            }
+
+            foreach (NoteSetting item in noteFilterConfig.noteSettings)
+            {
+                if (!this.noteDict.ContainsKey(item.note))
+                {
+                    noteDict.Add(item.note, item);
+                }
+                else
+                {
+                    Debug.LogError("OctaveSetting 配置重复");
+                }
+            }
+        }
+
         private void Init()
         {
             // 计算初始化参数
-            perSecxPos = slotPrefab.GetComponent<RectTransform>().sizeDelta.x + timeLayoutGroup.spacing;
+            perSecxPos = timePointViewPrefab.GetComponent<RectTransform>().sizeDelta.x + timeLayoutGroup.spacing;
             perSecxPos *= 2;
 
             // 初始化时间部分
@@ -84,13 +148,13 @@ namespace Chasing.TrackWindow
             //}
             foreach (var item in midiAsset.tracks)
             {
-                TrackView view = CreateNewTrack(item.name);
-                FillTrackData(view, item);
+                if(item)
+                {
+                    TrackView view = CreateNewTrack(item.name);
+                    FillTrackData(view, item);
+                }
             }
-
-
         }
-
 
         private TrackView CreateNewTrack(string trackName)
         {
@@ -105,10 +169,9 @@ namespace Chasing.TrackWindow
             return trackView;
         }
 
-
         private float GetXPos(float time)
         {
-            return 0;
+            return perSecxPos * time;
         }
 
         private void FillTrackData(TrackView parent, MidiAnimationAsset midiAnimation)
@@ -116,6 +179,9 @@ namespace Chasing.TrackWindow
             Stack<MidiEvent> eventStack = new Stack<MidiEvent>();
             for (int i = 0; i < midiAnimation.template.events.Length; i++)
             {
+                if (midiAnimation.template.events[i].IsNote == false)
+                    continue;
+
                 if(eventStack.Count == 0)
                 {
                     eventStack.Push(midiAnimation.template.events[i]);
@@ -126,29 +192,40 @@ namespace Chasing.TrackWindow
 
                 if(MidiEvent.IsOnOffComplete(oldEvent, newEvent))
                 {
-                    CreateSlot(parent.transform, oldEvent, newEvent);
+                    CreateSlot(parent.transform, midiAnimation.template, oldEvent, newEvent);
                 }
 
             }
         }
 
-
-        public void CreateSlot(Transform parent, MidiEvent onMidiEvent, MidiEvent offMidiEvent)
+        public void CreateSlot(Transform parent, MidiAnimation midiAnimation, MidiEvent onMidiEvent, MidiEvent offMidiEvent)
         {
             GameObject obj = Instantiate(slotPrefab.gameObject, parent);
             Slot slot = obj.GetComponent<Slot>();
 
-            float x = 0;
-            float width = 0;
+            float x;
+            float width;
 
-            x = GetXPos(onMidiEvent.time);
-            width = GetXPos(offMidiEvent.time - onMidiEvent.time);
+            float startTime = midiAnimation.ConvertTicksToSecond(onMidiEvent.time);
+            float endTime = midiAnimation.ConvertTicksToSecond(offMidiEvent.time);
+            x = GetXPos(startTime);
+            width = GetXPos(endTime - startTime);
 
             slot.realRect.anchoredPosition = new Vector2(x, slot.realRect.anchoredPosition.y);
             slot.realRect.sizeDelta = new Vector2(width, slot.realRect.sizeDelta.y);
+            slot.Refresh(onMidiEvent, offMidiEvent);
             obj.SetActive(true);
         }
 
+
+        public IEnumerator PopupTip(string tipDetail)
+        {
+            popTipBusy = true;
+            popTip.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            popTip.gameObject.SetActive(false);
+            popTipBusy = false;
+        }
 
     }
 }

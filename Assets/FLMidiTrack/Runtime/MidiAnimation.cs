@@ -9,7 +9,7 @@ namespace Chasing.Midi.Timeline
     /// 运行时基于动画计算Midi
     /// </summary>
     [System.Serializable]
-    public sealed class MidiAnimation : PlayableBehaviour
+    public class MidiAnimation : PlayableBehaviour
     {
         /// <summary>
         /// BPM
@@ -18,6 +18,8 @@ namespace Chasing.Midi.Timeline
         public uint duration;
         public uint ticksPerQuarterNote;// = 96;
         public MidiEvent[] events;
+
+        MidiSignalPool mSignPool = new MidiSignalPool();
 
         public float DurationInSecond
         {
@@ -67,7 +69,7 @@ namespace Chasing.Midi.Timeline
         /// <param name="info"></param>
         public override void PrepareFrame(Playable playable, FrameData info)
         {
-            Debug.Log($"time check {playable.GetTime()}");
+            //Debug.Log($"time check {playable.GetTime()}");
             float current = (float)playable.GetTime();
 
             if(info.evaluationType == FrameData.EvaluationType.Playback)
@@ -95,7 +97,7 @@ namespace Chasing.Midi.Timeline
         #endregion
 
 
-        MidiSignalPool mSignPool = new MidiSignalPool();
+
 
         private void TriggerSignals(Playable playable, PlayableOutput output, float previous, float current)
         {
@@ -176,9 +178,9 @@ namespace Chasing.Midi.Timeline
             return (iOn, iOff);
         }
 
-        private uint ConvertSecondToTick(float time) => (uint)(time * tempo / 60 * ticksPerQuarterNote);
+        public uint ConvertSecondToTick(float time) => (uint)(time * tempo / 60 * ticksPerQuarterNote);
 
-        private float ConvertTicksToSecond(uint tick) => tick * 60 / (tempo * ticksPerQuarterNote);
+        public float ConvertTicksToSecond(uint tick) => tick * 60 / (tempo * ticksPerQuarterNote);
 
         private float CalculateEnvelope(MidiEnvelope envelope, float onTime, float offTime)
         {

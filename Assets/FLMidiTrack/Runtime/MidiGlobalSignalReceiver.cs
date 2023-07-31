@@ -27,9 +27,12 @@ namespace Chasing.Midi.Timeline
 
             if (signal.Event.IsNote)
             {
-                MidiOctave nOctave = (MidiOctave)(signal.Event.data1 / 12 + 1);
-                MidiNote nNote = (MidiNote)(signal.Event.data1 % 12 + 1);
-                (signal.Event.IsNoteOn ? noteFilterOnEvent : noteFilterOffEvent)?.Invoke(new MidiNoteFilter() { note = nNote, octave = nOctave });
+                //MidiOctave nOctave = (MidiOctave)(signal.Event.data1 / 12 + 1);
+                //MidiNote nNote = (MidiNote)(signal.Event.data1 % 12 + 1);
+
+                (signal.Event.IsNoteOn ? noteFilterOnEvent : noteFilterOffEvent)?.Invoke(new MidiNoteFilter() { note = signal.Event.Note, octave = signal.Event.Octave, customData = signal.Event.customData });
+
+                Debug.Log($"OnNotify  {signal.Event}");
             }
         }
     }

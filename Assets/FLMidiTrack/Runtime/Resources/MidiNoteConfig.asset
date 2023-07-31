@@ -24,9 +24,9 @@ MonoBehaviour:
   - octave: 3
     color: {r: 1, g: 0.8430736, b: 0.0047169924, a: 1}
   - octave: 4
-    color: {r: 0.08517337, g: 1, b: 0, a: 1}
+    color: {r: 0, g: 0.745283, b: 0.36275327, a: 1}
   - octave: 5
-    color: {r: 0, g: 1, b: 0.6556065, a: 1}
+    color: {r: 0, g: 1, b: 0.9088969, a: 1}
   - octave: 6
     color: {r: 0, g: 0.5279169, b: 1, a: 1}
   - octave: 7

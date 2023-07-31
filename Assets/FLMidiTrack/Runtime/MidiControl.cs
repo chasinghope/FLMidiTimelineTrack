@@ -54,6 +54,7 @@ namespace Chasing.Midi.Timeline
     {
         public MidiNote note;
         public MidiOctave octave;
+        public CustomExpandData customData;
 
         public bool Check(in MidiEvent e)
         {

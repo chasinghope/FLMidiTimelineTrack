@@ -27,12 +27,18 @@ namespace Chasing.Midi.Timeline
             ctx.AddObjectToAsset("MidiFileAsset", midiAsset);
             ctx.SetMainObject(midiAsset);
 
-            for (int i = 0; i < midiAsset.tracks.Length; i++)
+            for (int i = 0, index = 0; i < midiAsset.tracks.Length; i++)
             {
                 MidiAnimationAsset track = midiAsset.tracks[i];
-                track.name = fileName + "_Track" + i;
+  
                 track.template.tempo = mTempo;
-                ctx.AddObjectToAsset(track.name, track);
+                if(track.template.events.Length > 0)
+                {
+                    index++;
+                    track.name = fileName + "_t" + index;
+                    ctx.AddObjectToAsset(track.name, track);
+                }
+
             }
         }
     }
