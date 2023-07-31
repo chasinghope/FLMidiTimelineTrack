@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7105403892657388885
+--- !u!114 &-1096220606533095615
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22,12 +22,12 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 3
+    m_Start: 4.933333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: -1476946414315048672, guid: 6cf4687e59722cc44b85324defed06f2, type: 3}
-    m_Duration: 12.74776
+    m_Asset: {fileID: 1543397857121445670, guid: f0ab199afda416f45a042f0ff09f3cff, type: 3}
+    m_Duration: 218
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -7105403892657388885}
+    m_ParentTrack: {fileID: -1096220606533095615}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -88,200 +88,12 @@ MonoBehaviour:
     m_PostExtrapolationMode: 0
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 3
-    m_DisplayName: doremi_Track2
+    m_PreExtrapolationTime: 4.933333333333334
+    m_DisplayName: "\u5D29\u574F\u661F\u7A79\u94C1\u9053OST-\u91CE\u706B wild fire_Track0"
   m_Markers:
     m_Objects: []
   template:
-    controls:
-    - enabled: 0
-      mode: 0
-      noteFilter:
-        note: 0
-        octave: 0
-      envelope:
-        attack: 0
-        decay: 1
-        sustain: 0.5
-        release: 1
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 90
-          outSlope: 90
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.02
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.5
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      ccNumber: 1
-      targetComponent:
-        exposedName: 65d062b7763f01e409cb4923c9b340b7
-        defaultValue: {fileID: 0}
-    - enabled: 0
-      mode: 1
-      noteFilter:
-        note: 0
-        octave: 6
-      envelope:
-        attack: 0
-        decay: 1
-        sustain: 0.5
-        release: 1
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 90
-          outSlope: 90
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.02
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.5
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      ccNumber: 1
-      targetComponent:
-        exposedName: d94b87958919dc84192444466cddb6b7
-        defaultValue: {fileID: 0}
-    - enabled: 0
-      mode: 2
-      noteFilter:
-        note: 0
-        octave: 0
-      envelope:
-        attack: 0
-        decay: 1
-        sustain: 0.5
-        release: 1
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 90
-          outSlope: 90
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.02
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.5
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      ccNumber: 1
-      targetComponent:
-        exposedName: ba50fcb562c7661429128c621b938186
-        defaultValue: {fileID: 0}
-    - enabled: 0
-      mode: 1
-      noteFilter:
-        note: 0
-        octave: 7
-      envelope:
-        attack: 0
-        decay: 1
-        sustain: 0.5
-        release: 1
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 90
-          outSlope: 90
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.02
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.5
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      ccNumber: 1
-      targetComponent:
-        exposedName: 15e4ffb916858a9428b50bc4b8b344ca
-        defaultValue: {fileID: 0}
+    controls: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,9 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks:
-  - {fileID: -7105403892657388885}
   - {fileID: 831229441524410376}
   - {fileID: 7161608320669081138}
+  - {fileID: -1096220606533095615}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -327,10 +139,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 3
+    m_Start: 4.933333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: 6171079781871740297}
-    m_Duration: 12.747755102040816
+    m_Asset: {fileID: 2639107614137733339}
+    m_Duration: 220.00521541950113
     m_TimeScale: 1
     m_ParentTrack: {fileID: 831229441524410376}
     m_EaseInDuration: 0
@@ -394,13 +206,30 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: midiTest
+    m_DisplayName: untitled
   m_Markers:
     m_Objects: []
   m_TrackProperties:
     volume: 1
     stereoPan: 0
     spatialBlend: 0
+--- !u!114 &2639107614137733339
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
+  m_Name: AudioPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 125881736fd53a845bfe415ec9da27a5, type: 3}
+  m_Loop: 0
+  m_bufferingTime: 0.1
+  m_ClipProperties:
+    volume: 1
 --- !u!114 &2788866107102974825
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -449,23 +278,6 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: b1417aeca05f7e94c9dbfabc8246a124, type: 2}
---- !u!114 &6171079781871740297
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
-  m_Name: AudioPlayableAsset
-  m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 97db63ceccc0b3f428a278bd3e2a1611, type: 3}
-  m_Loop: 0
-  m_bufferingTime: 0.1
-  m_ClipProperties:
-    volume: 1
 --- !u!114 &7161608320669081138
 MonoBehaviour:
   m_ObjectHideFlags: 1

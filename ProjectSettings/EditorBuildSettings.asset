@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FLMidiTrack/Test/FLMidiTest.unity
+    path: Assets/FLMidiTrack/Test/Scene/FLMidiTest.unity
     guid: 694901c48402cdf4a92e8e1f0307fae9
   m_configObjects: {}

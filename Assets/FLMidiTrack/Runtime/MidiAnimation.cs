@@ -11,9 +11,12 @@ namespace Chasing.Midi.Timeline
     [System.Serializable]
     public sealed class MidiAnimation : PlayableBehaviour
     {
+        /// <summary>
+        /// BPM
+        /// </summary>
         public float tempo = 120;
         public uint duration;
-        public uint ticksPerQuarterNote = 96;
+        public uint ticksPerQuarterNote;// = 96;
         public MidiEvent[] events;
 
         public float DurationInSecond
@@ -64,6 +67,7 @@ namespace Chasing.Midi.Timeline
         /// <param name="info"></param>
         public override void PrepareFrame(Playable playable, FrameData info)
         {
+            Debug.Log($"time check {playable.GetTime()}");
             float current = (float)playable.GetTime();
 
             if(info.evaluationType == FrameData.EvaluationType.Playback)
